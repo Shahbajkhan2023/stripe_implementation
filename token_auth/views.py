@@ -10,14 +10,13 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 
 
-
 class HelloView(APIView):
     permission_classes = [IsAuthenticated]
 
     def get(self, request):
         context = {"message": "Hello, world!"}
         return Response(context)
-    
+
 
 class RegistrationView(APIView):
     """Registration View"""
@@ -36,7 +35,9 @@ class RegistrationView(APIView):
                 {
                     "user": {
                         "id": registration_serializer.data["id"],
-                        "first_name": registration_serializer.data["first_name"],
+                        "first_name": registration_serializer.data[
+                            "first_name"
+                        ],
                         "last_name": registration_serializer.data["last_name"],
                         "username": registration_serializer.data["username"],
                         "email": registration_serializer.data["email"],
@@ -49,7 +50,7 @@ class RegistrationView(APIView):
                     },
                     "token": token.key,
                 },
-                status=status.HTTP_200_OK
+                status=status.HTTP_200_OK,
             )
 
         return Response(
@@ -57,5 +58,5 @@ class RegistrationView(APIView):
                 "error": registration_serializer.errors,
                 "status": f"{status.HTTP_400_BAD_REQUEST} Bad Request",
             },
-            status=status.HTTP_400_BAD_REQUEST
+            status=status.HTTP_400_BAD_REQUEST,
         )
