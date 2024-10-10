@@ -26,11 +26,8 @@ class GeeksDetailView(DetailView):
 
 class GeeksUpdateView(UpdateView):
     model = GeeksModel
-    fields = [
-        "title",
-        "description"
-    ]
-    template_name = 'update_form.html'
+    fields = ["title", "description"]
+    template_name = "update_form.html"
     success_url = "/"
 
 
@@ -41,5 +38,5 @@ class GeeksDeleteView(DeleteView):
 
 class GeeksFormView(FormView):
     form_class = GeeksForm
-    template_name = 'geeksmodel_form.html'
+    template_name = "geeksmodel_form.html"
     success_url = "/thanks"
